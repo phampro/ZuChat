@@ -86,6 +86,8 @@ public class MainActivityPhone extends AppCompatActivity implements PopupCallbac
     private static PopupCallback popupCallbackSub;
     private static  int numPopupSub = 0;
 
+    //TANG
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -41,6 +41,8 @@ public class LogInActivity extends Activity implements JsonCallback {
     private TextView tvHinLabelEmail, tvHinLabelPassword, tvRegister, tvForgetPass;
     private EditText txtEmail, txtPassword;
 
+    //THIEN
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
