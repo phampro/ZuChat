@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_L"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_M"
+        android:text="Tốc độ đọc:"/>
+
+    <RadioGroup
+        android:id="@+id/rdgSettingSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rdSlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đọc với tốc độ chậm"/>
+
+        <RadioButton
+            android:id="@+id/rdNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_XS"
+            android:text="Đọc với tốc độ bình thường"/>
+
+        <RadioButton
+            android:id="@+id/rdFast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_XS"
+            android:text="Đọc với tốc độ nhanh"/>
+    </RadioGroup>
+
+</LinearLayout>

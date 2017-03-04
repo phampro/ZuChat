@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">ZuMe Chat</string>
+
+    <string name="alert_error">Lỗi, xin vui lòng thử lại sau.</string>
+    <string name="alert_no_connection">Không thể truy cập internet. Hãy đảm bảo bạn có một kết nối internet hợp lệ và thử lại.</string>
+    <string name="alert_unexpected_error">Xin lỗi. Một lỗi không mong muốn đã xảy ra.</string>
+    <string name="alert_location_services">Các dịch vụ về vị trí phải được bật để có được vị trí của bạn.</string>
+    <string name="alert_connection_timeout">Đã xảy ra lỗi, không kết nối được với máy chủ</string>
+
+    <!--msg-->
+    <string name="msg_exit_app">Nhấn trở lại lần nữa để thoát.</string>
+    <string name="msg_log_out_app">Bạn có chắc muốn đăng xuất khỏi ứng dụng?</string>
+
+    <!--msg error-->
+    <string name="msg_error_enter_mail">Xin vui lòng nhập email</string>
+    <string name="msg_error_enter_username">Xin vui lòng nhập tài khoản</string>
+    <string name="msg_error_mail_invalid">Email không hợp lệ</string>
+    <string name="msg_error_enter_password">Xin vui lòng nhập mật khẩu</string>
+    <string name="msg_error_enter_password_not_match">Mật khẩu không trùng khớp</string>
+    <string name="msg_error_enter_content">Xin vui lòng nhập nội dung</string>
+
+    <!--hint-->
+    <string name="hint_email">Email</string>
+    <string name="hint_username">Tài khoản</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="hint_confirm_password">Nhập lại mật khẩu</string>
+
+    <string name="hint_title">Tiêu đề</string>
+    <string name="hint_content">Nội dung</string>
+    <string name="hint_phone">Điện thoại</string>
+    <string name="hint_enter_message">Nhap tin nhan</string>
+
+    <!-- Side menu items -->
+    <string name="menu_world_news">Tin tức mới nhất</string>
+    <string name="menu_favorite">Yêu Thích</string>
+    <string name="menu_setting">Cài Đặt</string>
+    <string name="menu_app_info">Thông Tin Ứng Dụng</string>
+    <string name="menu_list_app">Danh Sách Ứng Dụng</string>
+    <string name="menu_feedback">Phản hồi</string>
+    <string name="menu_log_out">Đăng Xuất</string>
+    <string name="menu_log_in">Đăng Nhập</string>
+
+    <!-- side nav -->
+    <string name="side_nav_drawer_open">Open navigation drawer</string>
+    <string name="side_nav_drawer_close">Close navigation drawer</string>
+
+    <!--BUTTON-->
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_ok">Ok</string>
+
+    <!--font-->
+    <string name="font">fonts/SourceSansPro-Regular.otf</string>
+    <string name="font_semibold">fonts/SourceSansPro-Semibold.otf</string>
+    <string name="font_light">fonts/SourceSansPro-Light.otf</string>
+    <string name="font_heavy">fonts/SourceSansPro-Bold.otf</string>
+    <string name="font_bold">fonts/SourceSansPro-Bold.otf</string>
+    <string name="font_medium">fonts/SourceSansPro-Light.otf</string>
+    <string name="font_thin">fonts/SourceSansPro-Light.otf</string>
+
+    <!--ads-->
+    <string name="impossible_game">Impossible Game</string>
+    <string name="retry_button_text">Retry</string>
+    <string name="watch_video_button_text">Watch Video for 10 additional coins</string>
+    <string name="default_coin_text">Coins: 0</string>
+
+    <string name="facebook_app_id">294659987558990</string> <!--DineInn vantangst@gmail.com-->
+
+
+    <!-- AdMob ad unit IDs -->
+    <!--<string name="banner_home_footer">ca-app-pub-6925282602161900/9200353071</string>--><!--tang-->
+    <string name="banner_home_footer">ca-app-pub-5966183733493342/6518671310</string><!--song-->
+    <!--<string name="interstitial_full_screen">ca-app-pub-6925282602161900/4953453474</string>--><!--tang-->
+    <string name="interstitial_full_screen">ca-app-pub-5966183733493342/9479994113</string><!--song-->
+    <string name="ads_video_forward">ca-app-pub-5966183733493342/3565204915</string><!--of song-->
+
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/padding_S">
+
+    <RelativeLayout
+        android:layout_width="55dp"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_profile_normal" />
+
+        <ImageView
+            android:id="@+id/ivStatus"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/bg_dot_green" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/padding_S"
+        android:paddingRight="@dimen/padding_S">
+
+        <com.hoangsong.zumechat.view.CustomTextView
+            android:id="@+id/tvName"
+            style="@style/tvOrange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tang le"
+            app:customTypeface="@string/font_semibold" />
+
+        <com.hoangsong.zumechat.view.CustomTextView
+            android:id="@+id/tvStatus"
+            style="@style/tvBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi!!!"
+            app:customTypeface="@string/font_light" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <com.hoangsong.zumechat.view.CustomTextView
+                android:id="@+id/tvDistance"
+                style="@style/tvBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2km"
+                app:customTypeface="@string/font_light" />
+
+            <com.hoangsong.zumechat.view.CustomTextView
+                android:id="@+id/tvTimeAfterOffline"
+                style="@style/tvBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30 min"
+                app:customTypeface="@string/font_light" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llHi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_L"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_help"/>
+
+        <com.hoangsong.zumechat.view.CustomTextView
+            style="@style/tvBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi!"
+            app:customTypeface="@string/font_light" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

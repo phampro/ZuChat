@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/actionbar_layout_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hoangsong.zumechat.view.CustomTextView
+            android:id="@+id/tvStatusConect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_red"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="Can&apos;t connect right now"
+            android:visibility="gone"
+            app:customTypeface="@string/font_light" />
+
+        <ProgressBar
+            android:id="@+id/progressBarLoadChat"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/msgview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/progressBarLoadChat"
+            android:background="#ECEFF1"
+            android:paddingBottom="3dp"
+            android:layout_above="@+id/llBottom"
+            android:scrollbars="none"/>
+
+
+
+        <com.hoangsong.zumechat.view.CustomTextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Comments Yet"
+            app:customTypeface="@string/font_light"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <com.hoangsong.zumechat.view.CustomEditText
+                android:id="@+id/txtChatMessage"
+                style="@style/tvBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_enter_message"
+                android:minHeight="@dimen/editext_height"
+                android:padding="@dimen/padding_L"
+                app:customTypeface="@string/font_light" />
+
+            <ImageButton
+                android:id="@+id/ibtnSendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

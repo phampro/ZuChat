@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_L"
+    android:paddingBottom="@dimen/padding_L"
+    android:paddingLeft="@dimen/padding_L"
+    android:paddingRight="@dimen/padding_L"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivItem1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/tvImageDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivItem1"
+            android:textSize="@dimen/size_XS"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/padding_S"
+            android:text="content 1"/>
+
+        <TextView
+            android:id="@+id/tvItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvImageDescription"
+            android:textSize="@dimen/size_M"
+            android:textColor="@color/black"
+            android:text="content 1"/>
+
+
+
+    </RelativeLayout>
+    <ImageButton
+        android:id="@+id/ibtnSpeak"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="@dimen/padding_S"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_volume_up_black_24dp"/>
+
+    <TextView
+        android:id="@+id/tvItem2"
+        android:layout_marginTop="@dimen/padding_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_M"
+        android:textColor="@color/colorPrimary"
+        android:text="content 2"/>
+
+
+    <TextView
+        android:id="@+id/tvTopicSource"
+        android:layout_marginTop="@dimen/padding_M"
+        android:layout_marginBottom="@dimen/padding_M"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|right"
+        android:paddingRight="@dimen/padding_XL"
+        android:text="nguồn từ: http://cep.com.vn"
+        android:textColor="@color/colorPrimary"/>
+
+</LinearLayout>
