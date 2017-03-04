@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SplashActivity.class));
             //startActivity(new Intent(this, SplashScreen.class));
             MyGcmListenerService.isTab=false;
+            //THIEN
         }
 	/*	String s= "devicd "+android.os.Build.DEVICE.toString()+"-- incremental--"+android.os.Build.VERSION.INCREMENTAL.toString()+"  model  "+android.os.Build.MODEL + " product"+ android.os.Build.PRODUCT;
 
