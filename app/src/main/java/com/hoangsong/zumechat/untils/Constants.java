@@ -141,5 +141,20 @@ public class Constants {
 	//name fragment
 	public static final String side_nav_fr_chat_detail = "chat detail";
 
+	//THIEN
+	public static final int ID_POPUP_CHOSE_PHOTO_LIBRARY = ++processPopupID;
+	public static final int ID_POPUP_TAKE_PHOTO= ++processPopupID;
+	public static final int ID_POPUP_CHOOSE_IMAGE= ++processPopupID;
+
+	public final static String UPDATE_PROFILE_PICKTURE = getURL() + MODULE_API + "UpdateProfilePicture";
+	public final static String UPDATE_PROFILE = getURL() + MODULE_API + "UpdateProfile";
+	public final static String UPDATE_JOB_STATUS = getURL() + MODULE_API + "UpdateJobStatus";
+	public final static String ADD_FAOURITE = getURL() + MODULE_API + "AddFavourite";
+
+	public final static int ID_UPDATE_PROFILE_PICKTURE = ++processID;
+	public final static int ID_UPDATE_PROFILE = ++processID;
+	public final static int ID_UPDATE_JOB_STATUS = ++processID;
+	public final static int ID_ADD_FAOURITE = ++processID;
+
 
 }

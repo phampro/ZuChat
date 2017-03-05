@@ -1,11 +1,13 @@
 package com.hoangsong.zumechat.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hoangsong.zumechat.R;
+import com.hoangsong.zumechat.activities.MyProfileActivity;
 import com.hoangsong.zumechat.adapters.ListMemberAdapter;
 import com.hoangsong.zumechat.connection.DownloadAsyncTask;
 import com.hoangsong.zumechat.helpers.Prefs;
@@ -68,6 +71,12 @@ public class FragmentTravelTo extends BaseFragment{
         lvMember = (ListView) v.findViewById(R.id.lvMember);
         adp = new ListMemberAdapter(context, list_member);
         lvMember.setAdapter(adp);
+        lvMember.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(getActivity(), MyProfileActivity.class));
+            }
+        });
 
     }
 

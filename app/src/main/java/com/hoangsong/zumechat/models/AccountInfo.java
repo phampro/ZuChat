@@ -18,12 +18,13 @@ public class AccountInfo {
     private String profile_url;
     private String background_url;
     private String country;
+    private String country_code;
     private String description;
     private int total_favorites;
     private int total_credit;
     private String credit_expiry_date;
 
-    public AccountInfo(String id, String token, String code, String username, String email, String gender, String reg_date, String job_status, String online_status, String profile_url, String background_url, String country, String description, int total_favorites, int total_credit, String credit_expiry_date) {
+    public AccountInfo(String id, String token, String code, String username, String email, String gender, String reg_date, String job_status, String online_status, String profile_url, String background_url, String country,String country_code, String description, int total_favorites, int total_credit, String credit_expiry_date) {
         this.id = id;
         this.token = token;
         this.code = code;
@@ -36,10 +37,19 @@ public class AccountInfo {
         this.profile_url = profile_url;
         this.background_url = background_url;
         this.country = country;
+        this.country_code = country_code;
         this.description = description;
         this.total_favorites = total_favorites;
         this.total_credit = total_credit;
         this.credit_expiry_date = credit_expiry_date;
+    }
+
+    public String getCountry_code() {
+        return country_code;
+    }
+
+    public void setCountry_code(String country_code) {
+        this.country_code = country_code;
     }
 
     public String getId() {

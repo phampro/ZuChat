@@ -74,4 +74,37 @@
     <string name="interstitial_full_screen">ca-app-pub-5966183733493342/9479994113</string><!--song-->
     <string name="ads_video_forward">ca-app-pub-5966183733493342/3565204915</string><!--of song-->
 
+    <!--THIEN-->
+    <!--Label-->
+    <string name="lbl_nick_name">Nickname</string>
+    <string name="lbl_status">Status</string>
+    <string name="lbl_gender">Gender</string>
+    <string name="lbl_country">Country</string>
+    <string name="lbl_total_favorite">Total favorite</string>
+    <string name="lbl_share_google_plus">Share G+</string>
+    <string name="lbl_share_facebook">Share Facebook</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="lbl_cancel">Cancel</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_hi">Hi !!</string>
+    <string name="lbl_add_contact">Add contact</string>
+    <!--Msg-->
+    <string name="msg_error_choose_a_larger_image_size">Choose a larger image size</string>
+    <string name="msg_error_please_enter_desription">Vui lòng nhập trạng thái.</string>
+    <string name="msg_error_please_enter_gender">Vui chọn giới tính.</string>
+    <string name="msg_error_please_enter_country">Vui lòng chọn quốc gia.</string>
+    <!--Button-->
+    <string name="btn_photo_library">Photo Library</string>
+    <string name="btn_take_photo">Take Photo</string>
+    <string name="btn_cancel">Cancel</string>
+    <!--Menu-->
+    <string name="menu_male">Male</string>
+    <string name="menu_female">Female</string>
+    <string name="menu_online">Online</string>
+    <string name="menu_offline">Offline</string>
+    <string name="menu_busy">Busy</string>
+    <!--Title-->
+    <string name="title_select_country">Select Country</string>
+    <string name="title_select_picture">Select Picture</string>
+
 </resources>

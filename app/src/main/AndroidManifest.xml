@@ -112,6 +112,13 @@
             android:name="com.hoangsong.zumechat.gcm.RegistrationIntentService"
             android:exported="false">
         </service>
+
+        <!--THIEN-->
+        <activity android:name=".activities.MyProfileActivity" />
+        <activity android:name=".activities.MyProfileEditActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

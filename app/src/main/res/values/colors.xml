@@ -32,4 +32,10 @@
     <color name="text_red">#FF504E</color>
     <color name="text_gay">#565656</color>
 
+    <!--THIEN-->
+    <color name="bg_line">#666666</color>
+    <color name="white_selected">#ecebeb</color>
+    <color name="btn_photo_lib">#f5f3f3</color>
+    <color name="text_dialog_chose_image">#157efb</color>
+
 </resources>

@@ -46,4 +46,7 @@
 
     <dimen name="editext_height">55dp</dimen>
 
+    <!--THIEN-->
+    <dimen name="radius_10">10dp</dimen>
+
 </resources>
