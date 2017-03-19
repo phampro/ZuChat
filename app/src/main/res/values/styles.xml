@@ -99,4 +99,17 @@
         <item name="android:padding">0dp</item>
     </style>
 
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/colorGreen</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/colorGreen</item>
+        
+
+    </style>
+
 </resources>

@@ -7,9 +7,9 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--GCM-->
-    <uses-permission
-        android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- GCM -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
         android:name="com.hoangsong.zumechat.permission.MAPS_RECEIVE"
@@ -19,18 +19,16 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
-        android:name="com.hoangsong.zumechat.ZuMeChat"
+        android:name=".ZuMeChat"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -41,29 +39,27 @@
             android:name="com.facebook.sdk.WebDialogTheme"
             android:resource="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <activity android:name="com.hoangsong.zumechat.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.hoangsong.zumechat.activities.SplashActivity"
+        <activity
+            android:name=".activities.SplashActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <activity android:name="com.hoangsong.zumechat.activities.MainActivityPhone"
+        <activity
+            android:name=".activities.MainActivityPhone"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.LogInActivity" />
+        <activity android:name=".activities.RegisterActivity" />
 
-        <activity android:name="com.hoangsong.zumechat.activities.LogInActivity" />
-
-        <activity android:name="com.hoangsong.zumechat.activities.RegisterActivity" />
-
-        <!--tab-->
+        <!-- tab -->
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -71,7 +67,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!--Include the AdActivity configChanges and theme. -->
+        <!-- Include the AdActivity configChanges and theme. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -82,18 +78,20 @@
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.hoangsong.zumechat" />
             </intent-filter>
         </receiver>
         <!-- [END gcm_receiver] -->
 
+
         <!-- [START gcm_listener] -->
         <service
-            android:name="com.hoangsong.zumechat.gcm.MyGcmListenerService"
-            android:exported="false" >
+            android:name=".gcm.MyGcmListenerService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -101,24 +99,27 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name="com.hoangsong.zumechat.gcm.MyInstanceIDListenerService"
+            android:name=".gcm.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name="com.hoangsong.zumechat.gcm.RegistrationIntentService"
-            android:exported="false">
-        </service>
+            android:name=".gcm.RegistrationIntentService"
+            android:exported="false" />
 
-        <!--THIEN-->
+        <!-- THIEN -->
         <activity android:name=".activities.MyProfileActivity" />
         <activity android:name=".activities.MyProfileEditActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".activities.ManageAdsActivity" />
+        <activity
+            android:name=".activities.AddAdsActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"/>
     </application>
 
 </manifest>

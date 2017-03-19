@@ -98,6 +98,7 @@ public class MyProfileEditActivity extends AppCompatActivity implements View.OnC
             txtStatus.setText(accountInfo.getDescription());
             txtGender.setText(accountInfo.getGender());
             txtCountry.setText(accountInfo.getCountry());
+            countryCode = accountInfo.getCountry_code();
             String urlAvatar = accountInfo.getProfile_url();
             String urlBackground = accountInfo.getBackground_url();
             if (urlAvatar.equals("")) {

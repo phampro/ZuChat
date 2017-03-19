@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 
+import com.hoangsong.zumechat.models.Advertisement;
+import com.hoangsong.zumechat.models.Image;
+import com.hoangsong.zumechat.models.ListAdvertisement;
 import com.hoangsong.zumechat.models.MemberInfo;
 import com.hoangsong.zumechat.models.MemberList;
 import com.hoangsong.zumechat.models.AccountInfo;
@@ -57,6 +60,10 @@ public class ParserHelper {
             return getLoginResponse(parseString);
         } else if (processID == Constants.ID_ADD_FAOURITE) {
             return getResponse(parseString);
+        } else if (processID == Constants.ID_CREATE_ADS) {
+            return getResponse(parseString);
+        } else if (processID == Constants.ID_GET_ALL_ADVERTISEMENT_LIST) {
+            return getAllAdvertisementList(parseString);
         }
 
         return null;
@@ -120,7 +127,7 @@ public class ParserHelper {
                     String online_status = object.has("online_status") ? checkStringValue(object.getString("online_status")) : "";
                     String profile_url = object.has("profile_url") ? checkStringValue(object.getString("profile_url")) : "";
                     String background_url = object.has("background_url") ? checkStringValue(object.getString("background_url")) : "";
-                    String country = object.has("country") ? checkStringValue(object.getString("country")) : "";
+                    String country = object.has("country_name") ? checkStringValue(object.getString("country_name")) : "";
                     String country_code = object.has("country_code") ? checkStringValue(object.getString("country_code")) : "";
                     String description = object.has("description") ? checkStringValue(object.getString("description")) : "";
                     int total_favorites = object.has("total_favorites") ? checkIntValue(object.getString("total_favorites")) : 0;
@@ -280,6 +287,57 @@ public class ParserHelper {
             return null;
         }
     }
+
+    //THIEN
+    private Response getAllAdvertisementList(String parseString) {
+        if (!parseString.equals("")) {
+            try {
+                JSONObject mainData = new JSONObject(parseString);
+                int errorCode = mainData.has(ERROR_CODE) ? checkIntValue(mainData.getString(ERROR_CODE)) : -1;
+                String message = mainData.has(MESSAGE) ? checkStringValue(mainData.getString(MESSAGE)) : "";
+                JSONObject data = mainData.isNull("data") ? null : mainData.getJSONObject("data");
+                if (errorCode == Constants.ERROR_CODE_SUCCESS && data != null) {
+                    int total_page = mainData.has("total_page") ? checkIntValue(mainData.getString("total_page")) : 0;
+                    //advertisements
+                    ArrayList<Advertisement> listAds = new ArrayList<>();
+                    JSONArray advertisements = data.isNull("advertisements") ? null : data.getJSONArray("advertisements");
+                    if (advertisements != null) {
+                        int length = advertisements.length();
+                        for (int i = 0; i < length; i++) {
+                            JSONObject obj = advertisements.getJSONObject(i);
+                            String id = obj.has("id") ? checkStringValue(obj.getString("id")) : "";
+                            String name = obj.has("name") ? checkStringValue(obj.getString("name")) : "";
+                            String content = obj.has("content") ? checkStringValue(obj.getString("content")) : "";
+                            String url = obj.has("url") ? checkStringValue(obj.getString("url")) : "";
+                            JSONArray images = data.isNull("images") ? null : data.getJSONArray("images");
+                            ArrayList<Image> listImg = new ArrayList<>();
+                            if (images != null) {
+                                int lengthImg = images.length();
+                                for (int j = 0; j < lengthImg; j++) {
+                                    JSONObject obj2 = images.getJSONObject(j);
+                                    String urlImg = obj2.has("url") ? checkStringValue(obj2.getString("url")) : "";
+                                    String type = obj2.has("type") ? checkStringValue(obj2.getString("type")) : "";
+                                    listImg.add(new Image(urlImg, type));
+                                }
+                            }
+                            listAds.add(new Advertisement(id, name, content, url, listImg));
+                        }
+                    }
+                    return new Response(errorCode, message, new ListAdvertisement(total_page, listAds));
+                } else {
+                    return new Response(errorCode, message, null);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    //END THIEN
 
     private Double getDoubleValue(String parseString, String objectKey) {
         if (!parseString.equalsIgnoreCase("")) {

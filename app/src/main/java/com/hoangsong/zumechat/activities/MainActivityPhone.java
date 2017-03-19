@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hoangsong.zumechat.MainActivity;
 import com.hoangsong.zumechat.R;
 import com.hoangsong.zumechat.adapters.TabMenuAdapter;
 import com.hoangsong.zumechat.dialog.DialogConfirm;
@@ -145,6 +146,9 @@ public class MainActivityPhone extends AppCompatActivity implements PopupCallbac
                     case Constants.MENU_DELETE:
                         break;
                     case Constants.MENU_BLOCK:
+                        break;
+                    case Constants.MENU_MANAGE_ADS:
+                        startActivity(new Intent(MainActivityPhone.this, ManageAdsActivity.class));
                         break;
                 }
             }

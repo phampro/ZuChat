@@ -166,10 +166,10 @@ public class DownloadAsyncTask extends AsyncTask<String, String, Object> {
                 HttpPost request = new HttpPost(formatParameter(url));
                 HttpClient client = Utils.getHTTPSClient();
                 request.setHeader("Authorization", "Basic "+ Base64.encodeToString(sBasicAuthentication.getBytes(), Base64.NO_WRAP));
-                request.setHeader("Content-type", "application/json");
+                request.setHeader("Content-type", "application/json; charset=UTF-8");
                 request.setHeader("Accept", "application/json");
                 request.setHeader("Accept-Language", ZuMeChat.language);
-                request.setEntity(new StringEntity(postData));
+                request.setEntity(new StringEntity(postData, "UTF-8"));
 
                 HttpResponse response = client.execute(request);
                 in = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));

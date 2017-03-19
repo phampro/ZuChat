@@ -133,10 +133,11 @@ public class Constants {
 	public static final String MENU_LOG_OUT = "Log out";
 	public static final String MENU_DELETE = "Delete";
 	public static final String MENU_BLOCK = "Block";
+	public static final String MENU_MANAGE_ADS = "Manage Ads";
 	public static String[] arrMenuPeople = {MENU_SETTING, MENU_CONTACT_US, MENU_SHARE_APP, MENU_LOG_OUT};
 	public static String[] arrMenuChat = {MENU_DELETE, MENU_SHARE_APP};
 	public static String[] arrMenuFollowed = {MENU_DELETE, MENU_BLOCK, MENU_SHARE_APP};
-	public static String[] arrMenuTravelTo = {MENU_SHARE_APP};
+	public static String[] arrMenuTravelTo = {MENU_SHARE_APP, MENU_MANAGE_ADS};
 
 	//name fragment
 	public static final String side_nav_fr_chat_detail = "chat detail";
@@ -150,11 +151,17 @@ public class Constants {
 	public final static String UPDATE_PROFILE = getURL() + MODULE_API + "UpdateProfile";
 	public final static String UPDATE_JOB_STATUS = getURL() + MODULE_API + "UpdateJobStatus";
 	public final static String ADD_FAOURITE = getURL() + MODULE_API + "AddFavourite";
+	public final static String CREATE_ADS = getURL() + MODULE_API + "CreateAdvertisement";
+	public final static String GET_ALL_ADVERTISEMENT_LIST = getURL() + MODULE_API + "GetAllAdvertisementList";
+	public final static String DELETE_ADVERTISEMENT = getURL() + MODULE_API + "DeleteAdvertisement";
 
 	public final static int ID_UPDATE_PROFILE_PICKTURE = ++processID;
 	public final static int ID_UPDATE_PROFILE = ++processID;
 	public final static int ID_UPDATE_JOB_STATUS = ++processID;
 	public final static int ID_ADD_FAOURITE = ++processID;
+	public final static int ID_CREATE_ADS = ++processID;
+	public final static int ID_GET_ALL_ADVERTISEMENT_LIST = ++processID;
+	public final static int ID_DELETE_ADVERTISEMENT = ++processID;
 
 
 }
