@@ -1,6 +1,7 @@
 package com.hoangsong.zumechat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hoangsong.zumechat.R;
 import com.hoangsong.zumechat.activities.AddAdsActivity;
 import com.hoangsong.zumechat.connection.DownloadAsyncTask;
@@ -51,6 +53,7 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
             Image image = images.get(i);
             if (image.getType().equalsIgnoreCase("thumb")) {
                 url = image.getUrl();
+                return url;
             }
         }
         return url;
@@ -93,7 +96,7 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
         oneItem.ibtnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oneItem.showListPopupWindow(ads.getId());
+                oneItem.showListPopupWindow(ads);
                 list.remove(i);
             }
         });
@@ -136,7 +139,7 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
             ibtnMenu = (ImageButton) v.findViewById(R.id.ibtnMenu);
         }
 
-        private void showListPopupWindow(final String idAdver) {
+        private void showListPopupWindow(final Advertisement ads) {
             try {
                 String[] listItem = new String[]{context.getResources().getString(R.string.menu_edit), context.getResources().getString(R.string.menu_delete)};
                 final ListPopupWindow lpw = new ListPopupWindow(context);
@@ -148,8 +151,11 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         if (position == 0) {
+                            Intent intent = new Intent(context, AddAdsActivity.class);
+                            intent.putExtra("idAds", ads.getId());
+                            context.startActivity(intent);
                         } else if (position == 1) {
-                            deleteAdvertisement(idAdver);
+                            deleteAdvertisement(ads.getId());
                         }
                         lpw.dismiss();
                     }

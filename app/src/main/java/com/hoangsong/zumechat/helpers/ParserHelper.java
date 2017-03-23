@@ -62,8 +62,12 @@ public class ParserHelper {
             return getResponse(parseString);
         } else if (processID == Constants.ID_CREATE_ADS) {
             return getResponse(parseString);
-        } else if (processID == Constants.ID_GET_ALL_ADVERTISEMENT_LIST) {
+        } else if (processID == Constants.ID_GET_MY_ADS_LIST) {
             return getAllAdvertisementList(parseString);
+        } else if (processID == Constants.ID_DELETE_ADVERTISEMENT) {
+            return getResponse(parseString);
+        } else if (processID == Constants.ID_GET_ADS_DETAIL) {
+            return getAdsDetail(parseString);
         }
 
         return null;
@@ -309,7 +313,7 @@ public class ParserHelper {
                             String name = obj.has("name") ? checkStringValue(obj.getString("name")) : "";
                             String content = obj.has("content") ? checkStringValue(obj.getString("content")) : "";
                             String url = obj.has("url") ? checkStringValue(obj.getString("url")) : "";
-                            JSONArray images = data.isNull("images") ? null : data.getJSONArray("images");
+                            JSONArray images = obj.isNull("images") ? null : obj.getJSONArray("images");
                             ArrayList<Image> listImg = new ArrayList<>();
                             if (images != null) {
                                 int lengthImg = images.length();
@@ -320,10 +324,66 @@ public class ParserHelper {
                                     listImg.add(new Image(urlImg, type));
                                 }
                             }
-                            listAds.add(new Advertisement(id, name, content, url, listImg));
+                            listAds.add(new Advertisement(id, name, "", "", "", content, url, false, false, listImg, null));
                         }
                     }
                     return new Response(errorCode, message, new ListAdvertisement(total_page, listAds));
+                } else {
+                    return new Response(errorCode, message, null);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    private Response getAdsDetail(String parseString) {
+        if (!parseString.equals("")) {
+            try {
+                JSONObject mainData = new JSONObject(parseString);
+                int errorCode = mainData.has(ERROR_CODE) ? checkIntValue(mainData.getString(ERROR_CODE)) : -1;
+                String message = mainData.has(MESSAGE) ? checkStringValue(mainData.getString(MESSAGE)) : "";
+                JSONObject data = mainData.isNull("data") ? null : mainData.getJSONObject("data");
+                if (errorCode == Constants.ERROR_CODE_SUCCESS && data != null) {
+                    //advertisement
+                    String id = data.has("id") ? checkStringValue(data.getString("id")) : "";
+                    String name = data.has("name") ? checkStringValue(data.getString("name")) : "";
+                    String start_date = data.has("start_date") ? checkStringValue(data.getString("start_date")) : "";
+                    String end_date = data.has("end_date") ? checkStringValue(data.getString("end_date")) : "";
+                    String created_on = data.has("created_on") ? checkStringValue(data.getString("created_on")) : "";
+                    String content = data.has("content") ? checkStringValue(data.getString("content")) : "";
+                    String url = data.has("url") ? checkStringValue(data.getString("url")) : "";
+                    boolean is_publish = data.has("is_publish") ? checkBooleanValue(data.getString("is_publish")) : false;
+                    boolean is_show = data.has("is_show") ? checkBooleanValue(data.getString("is_show")) : false;
+
+                    //List iamge
+                    JSONArray images = data.isNull("images") ? null : data.getJSONArray("images");
+                    ArrayList<Image> listImg = new ArrayList<>();
+                    if (images != null) {
+                        int lengthImg = images.length();
+                        for (int j = 0; j < lengthImg; j++) {
+                            JSONObject obj2 = images.getJSONObject(j);
+                            String urlImg = obj2.has("url") ? checkStringValue(obj2.getString("url")) : "";
+                            String type = obj2.has("type") ? checkStringValue(obj2.getString("type")) : "";
+                            listImg.add(new Image(urlImg, type));
+                        }
+                    }
+
+                    JSONArray arrayCountries = data.isNull("countries") ? null : data.getJSONArray("countries");
+                    ArrayList<String> listCountry = new ArrayList<>();
+                    if (arrayCountries != null) {
+                        int length = arrayCountries.length();
+                        for (int j = 0; j < length; j++) {
+                            JSONObject obj2 = arrayCountries.getJSONObject(j);
+                            String nameCountry = obj2.has("name") ? checkStringValue(obj2.getString("name")) : "";
+                            listCountry.add(nameCountry);
+                        }
+                    }
+                    return new Response(errorCode, message, new Advertisement(id, name, start_date, end_date, created_on, content, url, is_publish, is_show, listImg, listCountry));
                 } else {
                     return new Response(errorCode, message, null);
                 }

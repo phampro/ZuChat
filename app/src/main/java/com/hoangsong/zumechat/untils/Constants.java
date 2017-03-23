@@ -154,6 +154,8 @@ public class Constants {
 	public final static String CREATE_ADS = getURL() + MODULE_API + "CreateAdvertisement";
 	public final static String GET_ALL_ADVERTISEMENT_LIST = getURL() + MODULE_API + "GetAllAdvertisementList";
 	public final static String DELETE_ADVERTISEMENT = getURL() + MODULE_API + "DeleteAdvertisement";
+	public final static String GET_MY_ADS_LIST = getURL() + MODULE_API + "GetMyAdvertisementList";
+	public final static String GET_ADS_DETAIL = getURL() + MODULE_API + "GetAdvertisementDetail";
 
 	public final static int ID_UPDATE_PROFILE_PICKTURE = ++processID;
 	public final static int ID_UPDATE_PROFILE = ++processID;
@@ -162,6 +164,8 @@ public class Constants {
 	public final static int ID_CREATE_ADS = ++processID;
 	public final static int ID_GET_ALL_ADVERTISEMENT_LIST = ++processID;
 	public final static int ID_DELETE_ADVERTISEMENT = ++processID;
+	public final static int ID_GET_MY_ADS_LIST = ++processID;
+	public final static int ID_GET_ADS_DETAIL = ++processID;
 
 
 }

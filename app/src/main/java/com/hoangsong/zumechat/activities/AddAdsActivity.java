@@ -23,13 +23,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hoangsong.zumechat.R;
+import com.hoangsong.zumechat.adapters.ListAdsAdapter;
 import com.hoangsong.zumechat.connection.DownloadAsyncTask;
 import com.hoangsong.zumechat.dialog.DialogChooseImage;
 import com.hoangsong.zumechat.helpers.Prefs;
+import com.hoangsong.zumechat.models.Advertisement;
+import com.hoangsong.zumechat.models.Image;
 import com.hoangsong.zumechat.models.Response;
 import com.hoangsong.zumechat.untils.Constants;
 import com.hoangsong.zumechat.untils.JsonCallback;
+import com.hoangsong.zumechat.untils.MyDateTime;
+import com.hoangsong.zumechat.untils.MyDateTimeISO;
 import com.hoangsong.zumechat.untils.PopupCallback;
 import com.hoangsong.zumechat.untils.Utils;
 import com.squareup.picasso.Picasso;
@@ -39,6 +45,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -90,6 +97,16 @@ public class AddAdsActivity extends AppCompatActivity implements View.OnClickLis
         llToDate.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         ibtnPickBanner.setOnClickListener(this);
+
+        getMyIntent();
+    }
+
+    private void getMyIntent() {
+        Intent i = getIntent();
+        if (i != null) {
+            String idAds = i.getStringExtra("idAds");
+            getAdvertisementDetail(idAds);
+        }
     }
 
     private Bitmap checkBannerSize(Bitmap bitmap) {
@@ -130,7 +147,7 @@ public class AddAdsActivity extends AppCompatActivity implements View.OnClickLis
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 String myMonth = (month + 1) < 10 ? "0" + (month + 1) : (month + 1) + "";
                 String myDay = day < 10 ? "0" + day : day + "";
-                String date = myDay+ "/" + myMonth + "/" + year;
+                String date = myDay + "/" + myMonth + "/" + year;
                 textView.setText(date);
                 if (isFromDate) {
                     fromDate = year + "/" + myMonth + "/" + myDay;
@@ -140,6 +157,23 @@ public class AddAdsActivity extends AppCompatActivity implements View.OnClickLis
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         dialog.show();
+    }
+
+    private String getThumb(ArrayList<Image> images) {
+        String url = "";
+        int size = images.size();
+        for (int i = 0; i < size; i++) {
+            Image image = images.get(i);
+            if (image.getType().equalsIgnoreCase("thumb")) {
+                url = image.getUrl();
+                return url;
+            }
+        }
+        return url;
+    }
+
+    private void getAdvertisementDetail(String id) {
+        new DownloadAsyncTask(AddAdsActivity.this, Constants.GET_ADS_DETAIL + "?id=" + id + "&token=" + Prefs.getUserInfo().getToken(), Constants.ID_GET_ADS_DETAIL, AddAdsActivity.this, true, DownloadAsyncTask.HTTP_VERB.GET.getVal(), "{}");
     }
 
     private void onSave() {
@@ -258,6 +292,32 @@ public class AddAdsActivity extends AppCompatActivity implements View.OnClickLis
                 if (error == Constants.ERROR_CODE_SUCCESS) {
                     setResult(RESULT_OK);
                     finish();
+                } else {
+                    Utils.showSimpleDialogAlert(AddAdsActivity.this, msg);
+                }
+            } else {
+                Utils.showSimpleDialogAlert(AddAdsActivity.this, getString(R.string.alert_unexpected_error));
+            }
+        } else if (processID == Constants.ID_GET_ADS_DETAIL) {
+            if (data != null) {
+                Response response = (Response) data;
+                String msg = response.getMessage();
+                int error = response.getError_code();
+                if (error == Constants.ERROR_CODE_SUCCESS) {
+                    Advertisement ads = (Advertisement)response.getData();
+                    if(ads != null){
+                        txtName.setText(ads.getName());
+                        txtUrl.setText(ads.getUrl());
+                        txtContent.setText(ads.getContent());
+                        String url = getThumb(ads.getImages());
+                        if(!url.equals("")){
+                            Picasso.with(context).load(url).fit().centerCrop().into(ivBanner);
+                        }
+                        swDisplay.setChecked(ads.isShow());
+                        swPublish.setChecked(ads.isPublish());
+//                        tvFromDate.setText(MyDateTime.getFormatDateRegStr());
+//                        tvToDate.setText(MyDateTimeISO.(ads.getEnd_date()).toString());
+                    }
                 } else {
                     Utils.showSimpleDialogAlert(AddAdsActivity.this, msg);
                 }

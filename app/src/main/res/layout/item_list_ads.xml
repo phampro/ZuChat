@@ -28,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="Quảng cáo mới"
             android:textSize="@dimen/size_S"
             app:customTypeface="@string/font_semibold" />
 
@@ -39,7 +38,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Khuyến mãi lớn trong năm"
             android:textSize="@dimen/size_XS"
             app:customTypeface="@string/font_light" />
 
@@ -53,11 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:singleLine="true"
-                android:drawablePadding="3dp"
-                android:text="https://google.com/"
-                android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_link"
+                android:drawablePadding="3dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
                 android:textSize="@dimen/size_XS"
                 app:customTypeface="@string/font_light" />
         </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
     private int pageError = -1;
     private boolean firstLoad = true;
     private ListAdvertisement listAdvertisement;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,12 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         endlessListView = (EndlessListView) findViewById(R.id.endlessListView);
+        endlessListView.setLoadingView(R.layout.dialog_progress);
+        adp = new ListAdsAdapter(ManageAdsActivity.this, listAds);
+        endlessListView.setAdapter(adp);
+        endlessListView.reset(0, true);
+        endlessListView.setListener(this);
+
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
 
@@ -56,23 +64,12 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
 
         tvTitle.setText(getString(R.string.title_manage_advertisement));
 
-        setEndlestLvAdp();
-
         getAllAdvertisementList(page, true);
-    }
-
-    private void setEndlestLvAdp() {
-        endlessListView.setLoadingView(R.layout.dialog_progress);
-        endlessListView.reset(0, true);
-        endlessListView.setListener(this);
-        adp = new ListAdsAdapter(ManageAdsActivity.this, listAds);
-        endlessListView.setAdapter(adp);
-        endlessListView.setDivider(null);
     }
 
     private void getAllAdvertisementList(int page, boolean showDialog) {
         try {
-            new DownloadAsyncTask(ManageAdsActivity.this, Constants.GET_ALL_ADVERTISEMENT_LIST + "?page_index=" + page + "&page_size=" + 10 + "&token=" + Prefs.getUserInfo().getToken(), Constants.ID_GET_ALL_ADVERTISEMENT_LIST, ManageAdsActivity.this, showDialog, DownloadAsyncTask.HTTP_VERB.GET.getVal(), "{}");
+            new DownloadAsyncTask(ManageAdsActivity.this, Constants.GET_MY_ADS_LIST + "?page_index=" + page + "&page_size=" + 10 + "&token=" + Prefs.getUserInfo().getToken(), Constants.ID_GET_MY_ADS_LIST, ManageAdsActivity.this, showDialog, DownloadAsyncTask.HTTP_VERB.GET.getVal(), "{}");
         } catch (Exception e) {
             if (Constants.DEBUG_MODE) e.printStackTrace();
         }
@@ -95,54 +92,64 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void jsonCallback(Object data, int processID, int index) {
-        if (processID == Constants.ID_GET_ALL_ADVERTISEMENT_LIST) {
+        if (processID == Constants.ID_GET_MY_ADS_LIST) {
             if (data != null) {
                 Response response = (Response) data;
                 int error = response.getError_code();
                 String msg = response.getMessage();
                 if (error == Constants.ERROR_CODE_SUCCESS && response.getData() != null) {
                     listAdvertisement = (ListAdvertisement) response.getData();
-                    this.listAds = listAdvertisement.getListAds();
-                    adp.notifyDataSetChanged();
                     pageError = -1;
                     if (firstLoad) {
+                        listAds.clear();
+                        listAds.addAll(listAdvertisement.getListAds());
+                        adp.notifyDataSetChanged();
                         firstLoad = false;
                     } else {
+                        listAds.addAll(listAdvertisement.getListAds());
+                        adp.notifyDataSetChanged();
                         endlessListView.hildeFooter();
                     }
                 } else {
-                    Utils.showSimpleDialogAlert(this, msg);
+                    if (pageError < 0) {
+                        Utils.showSimpleDialogAlert(ManageAdsActivity.this, msg);
+                    }
                     endlessListView.reset(0, true);
                     pageError = page;
+                    endlessListView.hildeFooter();
                 }
             } else {
-                Utils.showSimpleDialogAlert(this, R.string.alert_unexpected_error);
+                if (pageError < 0) {
+                    Utils.showSimpleDialogAlert(ManageAdsActivity.this, R.string.alert_unexpected_error);
+                }
                 endlessListView.reset(0, true);
                 pageError = page;
+                endlessListView.hildeFooter();
             }
         }
     }
 
     @Override
     public void jsonError(String msg, int processID) {
-        if (processID == Constants.ID_GET_ALL_ADVERTISEMENT_LIST) {
-            Utils.showSimpleDialogAlert(this, msg);
+        if (processID == Constants.ID_GET_MY_ADS_LIST) {
+            if (pageError < 0) {
+                Utils.showSimpleDialogAlert(ManageAdsActivity.this, msg);
+            }
             endlessListView.reset(0, true);
             pageError = page;
+            endlessListView.hildeFooter();
         }
     }
 
     @Override
     public void loadData() {
-        if(page <= listAdvertisement.getTotal_page()) {
+//        if (page < listAdvertisement.getTotal_page()) {
             if (pageError > 0) {
                 getAllAdvertisementList(pageError, false);
             } else {
                 page++;
-                getAllAdvertisementList(pageError, false);
+                getAllAdvertisementList(page, false);
             }
-        }else{
-            endlessListView.hildeFooter();
-        }
+//        }
     }
 }

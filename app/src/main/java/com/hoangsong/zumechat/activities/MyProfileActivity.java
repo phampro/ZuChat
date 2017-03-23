@@ -129,11 +129,11 @@ public class MyProfileActivity extends AppCompatActivity implements JsonCallback
     private void updateStatus() {
         String status = accountInfo.getOnline_status();
         if (status.equalsIgnoreCase("online")) {
-            ivStatus.setBackgroundResource(R.drawable.ic_circle_green);
+            ivStatus.setBackgroundResource(R.drawable.bg_dot_green);
         } else if (status.equalsIgnoreCase("offline")) {
-            ivStatus.setBackgroundResource(R.drawable.ic_circle_green);
+            ivStatus.setBackgroundResource(R.drawable.bg_dot_gay);
         } else if (status.equalsIgnoreCase("busy")) {
-            ivStatus.setBackgroundResource(R.drawable.ic_circle_green);
+            ivStatus.setBackgroundResource(R.drawable.bg_dot_red);
         }
     }
 
