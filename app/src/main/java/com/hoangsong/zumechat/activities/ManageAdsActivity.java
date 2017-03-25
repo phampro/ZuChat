@@ -67,6 +67,14 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
         getAllAdvertisementList(page, true);
     }
 
+    private void resetEndless() {
+        page = 1;
+        pageError = -1;
+        firstLoad = true;
+        listAds.clear();
+        listAdvertisement = new ListAdvertisement();
+    }
+
     private void getAllAdvertisementList(int page, boolean showDialog) {
         try {
             new DownloadAsyncTask(ManageAdsActivity.this, Constants.GET_MY_ADS_LIST + "?page_index=" + page + "&page_size=" + 10 + "&token=" + Prefs.getUserInfo().getToken(), Constants.ID_GET_MY_ADS_LIST, ManageAdsActivity.this, showDialog, DownloadAsyncTask.HTTP_VERB.GET.getVal(), "{}");
@@ -80,7 +88,7 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
         int id = view.getId();
         switch (id) {
             case R.id.fab:
-                startActivity(new Intent(ManageAdsActivity.this, AddAdsActivity.class));
+                startActivityForResult(new Intent(ManageAdsActivity.this, AddAdsActivity.class), Constants.REQUEST_REFRESH);
                 break;
             case R.id.ibtnBack:
                 finish();
@@ -144,12 +152,23 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void loadData() {
 //        if (page < listAdvertisement.getTotal_page()) {
-            if (pageError > 0) {
-                getAllAdvertisementList(pageError, false);
-            } else {
-                page++;
-                getAllAdvertisementList(page, false);
-            }
+        if (pageError > 0) {
+            getAllAdvertisementList(pageError, false);
+        } else {
+            page++;
+            getAllAdvertisementList(page, false);
+        }
 //        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constants.REQUEST_REFRESH) {
+                resetEndless();
+                getAllAdvertisementList(page, true);
+            }
+        }
     }
 }

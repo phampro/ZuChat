@@ -68,11 +68,51 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_XS">
+
+                    <LinearLayout
+                        android:id="@+id/llTopThumb"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/blue_01_normal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/padding_S"
+                            android:text="@string/lbl_thumb_of_advertisement"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/ivThumb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/llTopThumb"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_banner" />
+
+                    <ImageButton
+                        android:id="@+id/ibnPickThumb"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/padding_S"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/button_camera_profile"
+                        android:src="@drawable/ic_camera" />
+
+                </RelativeLayout>
+
                 <com.hoangsong.zumechat.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:layout_marginTop="@dimen/padding_S"
                     android:text="Informartion"
                     app:customTypeface="@string/font_semibold" />
@@ -84,8 +124,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_L"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:layout_marginTop="@dimen/padding_L"
                     android:background="@drawable/edittext_bottom_line"
                     android:gravity="center|left"
@@ -103,8 +141,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_L"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:background="@drawable/edittext_bottom_line"
                     android:gravity="center|left"
                     android:hint="@string/hint_content_of_advertisement"
@@ -120,8 +156,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_L"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:background="@drawable/edittext_bottom_line"
                     android:gravity="center|left"
                     android:hint="@string/hint_url_of_advertisement"
@@ -136,9 +170,9 @@
                     style="@style/txtBlueFloating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:background="@drawable/edittext_bottom_line"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:gravity="center|left"
                     android:hint="@string/hint_countries"
                     android:imeOptions="actionNext"
@@ -157,8 +191,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -181,16 +213,17 @@
                             android:orientation="vertical">
 
                             <TextView
+                                style="@style/tvBlue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/lbl_form_date"
-                                android:textAllCaps="true" />
+                                android:text="@string/lbl_form_date" />
 
                             <TextView
                                 android:id="@+id/tvFromDate"
+                                style="@style/tvBlue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="N/A" />
+                                android:text="n/a" />
 
                         </LinearLayout>
 
@@ -217,46 +250,44 @@
 
                             <TextView
                                 android:id="@+id/textView"
-                                android:textAllCaps="true"
+                                style="@style/tvBlue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/lbl_to_date" />
 
                             <TextView
                                 android:id="@+id/tvToDate"
+                                style="@style/tvBlue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="N/A" />
+                                android:text="n/a" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/swPublish"
+                    style="@style/tvBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:theme="@style/MySwitch"
-                    android:layout_marginTop="@dimen/padding_M"
-                    android:text="@string/lbl_display_publish_or_none" />
+                    android:text="@string/lbl_display_publish_or_none"
+                    android:layout_marginTop="@dimen/padding_S"
+                    android:theme="@style/MySwitch" />
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/swDisplay"
+                    style="@style/tvBlue"
+                    android:layout_marginTop="@dimen/padding_S"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:theme="@style/MySwitch"
-                    android:layout_marginTop="@dimen/padding_M"
-                    android:text="@string/lbl_display_or_none" />
+                    android:text="@string/lbl_display_or_none"
+                    android:theme="@style/MySwitch" />
 
                 <Button
                     android:id="@+id/btnSave"
                     style="@style/btnBlueConner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/padding_M"
-                    android:layout_marginLeft="@dimen/padding_M"
-                    android:layout_marginRight="@dimen/padding_M"
                     android:layout_marginTop="@dimen/padding_M"
                     android:text="@string/btn_save" />
 

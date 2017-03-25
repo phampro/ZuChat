@@ -68,6 +68,8 @@ public class ParserHelper {
             return getResponse(parseString);
         } else if (processID == Constants.ID_GET_ADS_DETAIL) {
             return getAdsDetail(parseString);
+        }else if (processID == Constants.ID_UPDATE_ADS) {
+            return getResponse(parseString);
         }
 
         return null;

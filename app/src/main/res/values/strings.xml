@@ -93,18 +93,21 @@
     <string name="lbl_to_date">To date</string>
     <string name="lbl_display_publish_or_none">Display Publish Or None</string>
     <string name="lbl_display_or_none">Display Or None</string>
+    <string name="lbl_thumb_of_advertisement">Thumb of advertisement</string>
     <!--Msg-->
     <string name="msg_error_choose_a_larger_image_size">Choose a larger image size</string>
     <string name="msg_error_please_enter_desription">Vui lòng nhập trạng thái.</string>
     <string name="msg_error_please_enter_gender">Vui chọn giới tính.</string>
     <string name="msg_error_please_enter_country">Vui lòng chọn quốc gia.</string>
     <string name="msg_please_choose_banner">Please choose banner picture.</string>
+    <string name="msg_please_choose_thumb">Please choose thumb picture.</string>
     <string name="msg_please_enter_name">Please enter name of advertisement.</string>
     <string name="msg_please_enter_content">Please enter content of advertisement.</string>
     <string name="msg_please_enter_url">Please enter url of advertisement.</string>
     <string name="msg_please_enter_from_date">Please enter from date.</string>
     <string name="msg_please_enter_to_date">Please enter to date.</string>
     <string name="msg_the_name_must_be_at_least">The name must be at least 6 characters long and can not exceed 500 characters.</string>
+    <string name="msg_do_you_want_to_delete_item">Do you want to delete item.</string>
     <!--Button-->
     <string name="btn_photo_library">Photo Library</string>
     <string name="btn_take_photo">Take Photo</string>
@@ -123,6 +126,7 @@
     <string name="title_select_picture">Select Picture</string>
     <string name="title_add_advertisement">Add advertisement</string>
     <string name="title_manage_advertisement">Manage advertisement</string>
+    <string name="title_choose_country">Choose country</string>
     <!--Hint-->
     <string name="hint_name_of_advertisement">Name of advertisement</string>
     <string name="hint_content_of_advertisement">Content of advertisement</string>

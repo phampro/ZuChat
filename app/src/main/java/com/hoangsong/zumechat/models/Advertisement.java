@@ -34,6 +34,7 @@ public class Advertisement {
         this.isShow = isShow;
         this.images = images;
         this.countries = countries;
+        this.end_date = end_date;
     }
 
     public String getEnd_date() {

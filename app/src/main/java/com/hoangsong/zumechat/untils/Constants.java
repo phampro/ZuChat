@@ -152,6 +152,7 @@ public class Constants {
 	public final static String UPDATE_JOB_STATUS = getURL() + MODULE_API + "UpdateJobStatus";
 	public final static String ADD_FAOURITE = getURL() + MODULE_API + "AddFavourite";
 	public final static String CREATE_ADS = getURL() + MODULE_API + "CreateAdvertisement";
+	public final static String UPDATE_ADS = getURL() + MODULE_API + "UpdateAdvertisement";
 	public final static String GET_ALL_ADVERTISEMENT_LIST = getURL() + MODULE_API + "GetAllAdvertisementList";
 	public final static String DELETE_ADVERTISEMENT = getURL() + MODULE_API + "DeleteAdvertisement";
 	public final static String GET_MY_ADS_LIST = getURL() + MODULE_API + "GetMyAdvertisementList";
@@ -162,10 +163,16 @@ public class Constants {
 	public final static int ID_UPDATE_JOB_STATUS = ++processID;
 	public final static int ID_ADD_FAOURITE = ++processID;
 	public final static int ID_CREATE_ADS = ++processID;
+	public final static int ID_UPDATE_ADS = ++processID;
 	public final static int ID_GET_ALL_ADVERTISEMENT_LIST = ++processID;
 	public final static int ID_DELETE_ADVERTISEMENT = ++processID;
 	public final static int ID_GET_MY_ADS_LIST = ++processID;
 	public final static int ID_GET_ADS_DETAIL = ++processID;
+	//Popop
+	public final static int ID_POP_COUNTRY = ++processID;
+	//Request code
+	public final static int REQUEST_REFRESH = ++processID;
+
 
 
 }

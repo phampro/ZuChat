@@ -46,9 +46,11 @@ public class UtilCountry {
                     JSONObject jsonObject = countryArray.getJSONObject(i);
                     String countryDialCode = jsonObject.getString("dial_code");
                     String countryCode = jsonObject.getString("code");
+                    String name = jsonObject.getString("name");
                     Country country = new Country();
                     country.setCode(countryCode);
                     country.setDialCode(countryDialCode);
+                    country.setName(name);
                     allCountriesList.add(country);
                 }
                 return allCountriesList;

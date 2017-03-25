@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/rounded_corner"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/title_choose_country"
+        android:textColor="@color/text_solid_blude"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_height_small"
+        android:layout_below="@+id/lvCountry"
+        android:background="@color/text_solid_blude" />
+
+    <ListView
+        android:id="@+id/lvCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/lblTitle"
+        android:scrollbars="none" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_height_small"
+        android:layout_below="@+id/lvCountry"
+        android:background="@color/text_solid_blude" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_white_conner_left_bottom_small"
+            android:paddingBottom="5dp"
+            android:text="@string/btn_no"
+            android:textAllCaps="false"
+            android:textColor="@color/text_solid_blude"
+            android:textSize="@dimen/size_S"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/text_solid_blude" />
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_white_conner_right_bottom_small"
+            android:paddingBottom="5dp"
+            android:text="@string/btn_yes"
+            android:textAllCaps="false"
+            android:textColor="@color/text_solid_blude"
+            android:textSize="@dimen/size_S"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

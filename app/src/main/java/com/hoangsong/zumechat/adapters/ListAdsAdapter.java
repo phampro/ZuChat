@@ -20,12 +20,14 @@ import com.google.gson.Gson;
 import com.hoangsong.zumechat.R;
 import com.hoangsong.zumechat.activities.AddAdsActivity;
 import com.hoangsong.zumechat.connection.DownloadAsyncTask;
+import com.hoangsong.zumechat.dialog.DialogConfirm;
 import com.hoangsong.zumechat.helpers.Prefs;
 import com.hoangsong.zumechat.models.Advertisement;
 import com.hoangsong.zumechat.models.Image;
 import com.hoangsong.zumechat.models.Response;
 import com.hoangsong.zumechat.untils.Constants;
 import com.hoangsong.zumechat.untils.JsonCallback;
+import com.hoangsong.zumechat.untils.PopupCallback;
 import com.hoangsong.zumechat.untils.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +42,7 @@ import java.util.ArrayList;
 public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
     private Context context;
     private ArrayList<Advertisement> list;
+    private int positionDelete;
 
     public ListAdsAdapter(Context context, ArrayList<Advertisement> list) {
         this.context = context;
@@ -97,7 +100,7 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
             @Override
             public void onClick(View view) {
                 oneItem.showListPopupWindow(ads);
-                list.remove(i);
+                positionDelete = i;
             }
         });
         return v;
@@ -111,6 +114,7 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
                 String msg = response.getMessage();
                 int error = response.getError_code();
                 if (error == Constants.ERROR_CODE_SUCCESS) {
+                    list.remove(positionDelete);
                     notifyDataSetChanged();
                 } else {
                     Utils.showSimpleDialogAlert(context, msg);
@@ -155,7 +159,14 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
                             intent.putExtra("idAds", ads.getId());
                             context.startActivity(intent);
                         } else if (position == 1) {
-                            deleteAdvertisement(ads.getId());
+                            new DialogConfirm(context, context.getResources().getString(R.string.app_name), context.getResources().getString(R.string.msg_do_you_want_to_delete_item), 0, new PopupCallback() {
+                                @Override
+                                public void popUpCallback(Object data, int processID, Object obj, int num, int index) {
+                                    if(processID == Constants.ID_POPUP_CONFIRM_YES){
+                                        deleteAdvertisement(ads.getId());
+                                    }
+                                }
+                            }).show();
                         }
                         lpw.dismiss();
                     }
