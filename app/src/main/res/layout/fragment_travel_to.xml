@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hoangsong.zumechat.view.EndlessListView
+        android:id="@+id/endlessListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/action_bar"
+        android:paddingBottom="@dimen/padding_XS"
+        android:paddingTop="@dimen/padding_XS"
+        android:scrollbars="none"
+        android:theme="@style/MySwitch" />
+</LinearLayout>

@@ -119,7 +119,6 @@
         <activity android:name=".activities.ManageAdsActivity" />
         <activity
             android:name=".activities.AddAdsActivity"
-            android:launchMode="singleInstance"
             android:configChanges="keyboard|keyboardHidden|orientation"/>
     </application>
 

@@ -43,10 +43,12 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
     private Context context;
     private ArrayList<Advertisement> list;
     private int positionDelete;
+    private boolean isMyAds;
 
-    public ListAdsAdapter(Context context, ArrayList<Advertisement> list) {
+    public ListAdsAdapter(Context context, ArrayList<Advertisement> list, boolean isMyAds) {
         this.context = context;
         this.list = list;
+        this.isMyAds = isMyAds;
     }
 
     private String getThumb(ArrayList<Image> images) {
@@ -96,13 +98,25 @@ public class ListAdsAdapter extends BaseAdapter implements JsonCallback {
         if (!urlThumb.equals("")) {
             Picasso.with(context).load(urlThumb).centerCrop().fit().into(oneItem.ivBanner);
         }
-        oneItem.ibtnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                oneItem.showListPopupWindow(ads);
-                positionDelete = i;
-            }
-        });
+        if(isMyAds) {
+            oneItem.ibtnMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    oneItem.showListPopupWindow(ads);
+                    positionDelete = i;
+                }
+            });
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, AddAdsActivity.class);
+                    intent.putExtra("idAds", ads.getId());
+                    context.startActivity(intent);
+                }
+            });
+        }else{
+            oneItem.ibtnMenu.setVisibility(View.GONE);
+        }
         return v;
     }
 

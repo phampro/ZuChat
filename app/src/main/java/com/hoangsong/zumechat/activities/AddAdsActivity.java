@@ -24,6 +24,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.wearable.MessageEvent;
 import com.google.gson.Gson;
 import com.hoangsong.zumechat.R;
 import com.hoangsong.zumechat.adapters.ListAdsAdapter;
@@ -47,6 +48,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -495,7 +497,7 @@ public class AddAdsActivity extends AppCompatActivity implements View.OnClickLis
                 String msg = response.getMessage();
                 int error = response.getError_code();
                 if (error == Constants.ERROR_CODE_SUCCESS) {
-                    setResult(RESULT_OK);
+                    EventBus.getDefault().post(Constants.REQUEST_REFRESH+"");
                     finish();
                 } else {
                     Utils.showSimpleDialogAlert(AddAdsActivity.this, msg);

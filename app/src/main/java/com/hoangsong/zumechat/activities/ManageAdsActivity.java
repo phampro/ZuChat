@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.wearable.MessageEvent;
 import com.hoangsong.zumechat.R;
 import com.hoangsong.zumechat.adapters.ListAdsAdapter;
 import com.hoangsong.zumechat.connection.DownloadAsyncTask;
@@ -20,6 +21,10 @@ import com.hoangsong.zumechat.untils.Constants;
 import com.hoangsong.zumechat.untils.JsonCallback;
 import com.hoangsong.zumechat.untils.Utils;
 import com.hoangsong.zumechat.view.EndlessListView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -47,6 +52,7 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
 
     private void initUI() {
         listAds = new ArrayList<>();
+        EventBus.getDefault().register(this);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         endlessListView = (EndlessListView) findViewById(R.id.endlessListView);
@@ -83,12 +89,26 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    @Subscribe
+    public void onEvent(String type) {
+        if(type.equalsIgnoreCase(Constants.REQUEST_REFRESH+"")){
+            resetEndless();
+            getAllAdvertisementList(page, true);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.fab:
-                startActivityForResult(new Intent(ManageAdsActivity.this, AddAdsActivity.class), Constants.REQUEST_REFRESH);
+                startActivity(new Intent(ManageAdsActivity.this, AddAdsActivity.class));
                 break;
             case R.id.ibtnBack:
                 finish();
@@ -159,16 +179,5 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
             getAllAdvertisementList(page, false);
         }
 //        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == Constants.REQUEST_REFRESH) {
-                resetEndless();
-                getAllAdvertisementList(page, true);
-            }
-        }
     }
 }

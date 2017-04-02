@@ -64,6 +64,8 @@ public class ParserHelper {
             return getResponse(parseString);
         } else if (processID == Constants.ID_GET_MY_ADS_LIST) {
             return getAllAdvertisementList(parseString);
+        } else if (processID == Constants.ID_GET_ALL_ADVERTISEMENT_LIST) {
+            return getAllAdvertisementList(parseString);
         } else if (processID == Constants.ID_DELETE_ADVERTISEMENT) {
             return getResponse(parseString);
         } else if (processID == Constants.ID_GET_ADS_DETAIL) {
