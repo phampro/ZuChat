@@ -79,7 +79,7 @@ public class FragmentTravelTo extends BaseFragment implements EndlessListView.En
 
         endlessListView = (EndlessListView) v.findViewById(R.id.endlessListView);
         endlessListView.setLoadingView(R.layout.dialog_progress);
-        adp = new ListAdsAdapter(context, listAds);
+        adp = new ListAdsAdapter(context, listAds, false);
         endlessListView.setAdapter(adp);
         endlessListView.reset(0, true);
         endlessListView.setListener(this);

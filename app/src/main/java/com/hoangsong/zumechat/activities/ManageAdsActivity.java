@@ -57,7 +57,7 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
         fab = (FloatingActionButton) findViewById(R.id.fab);
         endlessListView = (EndlessListView) findViewById(R.id.endlessListView);
         endlessListView.setLoadingView(R.layout.dialog_progress);
-        adp = new ListAdsAdapter(ManageAdsActivity.this, listAds);
+        adp = new ListAdsAdapter(ManageAdsActivity.this, listAds, true);
         endlessListView.setAdapter(adp);
         endlessListView.reset(0, true);
         endlessListView.setListener(this);
