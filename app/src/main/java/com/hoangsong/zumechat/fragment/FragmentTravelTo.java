@@ -43,7 +43,7 @@ public class FragmentTravelTo extends BaseFragment implements EndlessListView.En
     private Context context;
     private View thisView;
 
-    //Load more
+    //Load more//
     private EndlessListView endlessListView;
     private ListAdsAdapter adp;
     private ArrayList<Advertisement> listAds;

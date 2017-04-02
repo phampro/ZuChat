@@ -33,7 +33,7 @@ public class ManageAdsActivity extends AppCompatActivity implements View.OnClick
     private TextView tvTitle;
     private ImageButton ibtnBack;
 
-    //Load more
+    //Load more//
     private EndlessListView endlessListView;
     private ListAdsAdapter adp;
     private ArrayList<Advertisement> listAds;
